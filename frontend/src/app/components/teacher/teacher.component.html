@@ -1,0 +1,28 @@
+<div class="container col-md-12"> 
+<h2>My exams</h2> 
+  <div class="table-responsive table-container">  
+    <table class="table table-light table-hover table-striped">  
+      <thead class="thead-light">  
+        <tr>  
+          <th class="text-center">Subject Name</th> 
+          <th class="text-center">Teacher</th>
+          <th class="text-center">Date and Time</th>
+		  <th class="text-center">Action</th>  		  
+        </tr>  
+      </thead>  
+      <tbody>  
+        <tr *ngFor="let exam of exams"> 
+
+          <td class="text-center">{{exam.subjectName}}</td>
+          <td class="text-center">{{exam.teacher}}</td> 
+		  <td class="text-center">{{exam.dateTime}}</td> 
+		  <td class="text-center">
+            <button (click)="updateExam(exam)"  class="btn btn-primary">Edit</button> 
+			<button (click)="deleteExam(exam)" style="margin-left: 20px;" class="btn btn-primary"> Delete</button>  
+		  </td>
+        </tr>  
+      </tbody>  
+    </table>  
+		  <button (click)="addExam()" class="btn btn-primary">Create exam</button>
+  </div> 
+ </div>

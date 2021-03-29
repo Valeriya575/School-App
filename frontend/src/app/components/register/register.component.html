@@ -1,0 +1,55 @@
+<html>
+<style>
+h1 {text-align: center;}
+</style>
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+            <!-- Form -->
+            <form [formGroup]="userForm" (ngSubmit) = "onSubmit()" class="text-center border border-light p-5">
+                <h1>Register</h1>
+                <!-- Input fields -->
+				<div class="form-group">
+                    <input type="text" class="form-control name" id="name" placeholder="Name" formControlName="name">
+                </div>
+					<control-messages [control]="userForm.get('name')"></control-messages>
+
+				<div class="form-group">
+                    <input type="text" class="form-control surname" id="surname" placeholder="Surname" formControlName="surname">
+                </div>
+					<control-messages [control]="userForm.get('surname')"></control-messages>
+					
+                <div class="form-group">
+                    <input type="text" class="form-control username" id="username" placeholder="Username" formControlName="username">
+                </div>
+					<control-messages [control]="userForm.get('username')"></control-messages>
+					
+				<div class="form-group">
+                    <input type="text" class="form-control text" id="text" placeholder="Email" formControlName="email">
+                </div>
+					<control-messages [control]="userForm.get('email')"></control-messages>
+					
+                <div class="form-group">
+                    <input type="password" class="form-control password" id="password" placeholder="Password" formControlName="password">
+                </div>
+					<control-messages [control]="userForm.get('password')"></control-messages>
+				
+				<div class="form-group">
+				
+				<select class="form-control" formControlName="userType" id="userType">
+					<option value="" disable selected>I am ...</option>
+					 <option value="Student">Student</option>
+					 <option value="Teacher">Teacher</option>
+				</select>
+				</div>
+				<control-messages [control]="userForm.get('userType')"></control-messages>
+
+					
+                <button type="submit" class="btn btn-primary btn-customized" [disabled]="!userForm.valid">Register Now</button>
+                <!-- End input fields -->
+            </form>
+            <!-- Form end -->
+        </div>
+    </div>
+</div>
+</html>

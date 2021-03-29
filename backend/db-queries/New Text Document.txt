@@ -1,0 +1,42 @@
+//function for writing station departure times in the database
+function writeToDB(lineName, from, to, times, days){
+	var stationFrom = new MbStation();
+	var stationTo = new MbStation();
+	var line = new MbLine();
+	var departures = new MbDepartures();
+
+	stationFrom.stationName = from;
+	stationTo.stationName = to;
+		
+	departures.times = times;
+	departures.days = days;
+	departures.to = stationTo;
+	departures.from = stationFrom;
+	departures.line = line;
+	
+	line.lineName = lineName;
+	line.departures = departures;
+	
+	//write departures to db
+	departures.save(function(err, docs){
+		if(err) console.error(err);
+	});
+	
+	//write to and from stations to db if they dont exist	
+	MbStation.findOneAndUpdate({stationName: from}, stationFrom, {upsert: true},  function(err, docs){
+		if(err) console.error(err);
+
+	});
+	MbStation.findOneAndUpdate({stationName: to}, stationTo, {upsert: true},  function(err, docs){
+		if(err) console.error(err);
+
+	});
+	
+	//write line to db if it doesent exist, otherwise update array
+	MbLine.findOneAndUpdate({lineName: lineName}, {$push: {departures: departures}}, {upsert: true}, function(err, docs){
+		if(err) console.error(err);
+	});
+	
+	
+	
+}

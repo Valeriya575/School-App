@@ -1,0 +1,31 @@
+ <h3>Create an exam</h3> 
+ <div class="container h-100">
+ <div class="row h-100 justify-content-center align-items-center container "> 
+ <form [formGroup]="examForm" (ngSubmit) = "onSubmit()">
+    <div class="form-group col-md-17">
+      <label for="subjectName">Subject</label>
+      <select id="subjectName" class="form-control" formControlName= "subjectName">
+        <option value="" disable selected>Choose the subject</option>
+        <option value="maths">Maths</option>
+		<option value="chemistry">Chemistry</option>
+        <option value="physics">Physics</option>
+		<option value="programming">Programming</option>
+      </select>    
+	  	<control-messages [control]="examForm.get('subjectName')"></control-messages>
+
+	  </div>
+    <div class="form-group col-md-17">
+      <label for="dateTime">Date and Time</label>
+      <input type="datetime-local" class="form-control" id="dateTime" formControlName= "dateTime">
+    </div>
+		<control-messages [control]="examForm.get('dateTime')"></control-messages>
+
+	
+  <!-- <div class="form-group col-md-17"> -->
+    <!-- <label for="inputAddress2">Address 2</label> -->
+    <!-- <input type="text" class="form-control" id="inputAddress2" placeholder="Floor, room"> -->
+  <!-- </div> -->
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+</div>
+</div>
